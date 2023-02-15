@@ -11,6 +11,7 @@ node_modules
 social-react/node_modules
 node-rest-api/node_modules
 dist
+.env
 dist-ssr
 *.local
 
