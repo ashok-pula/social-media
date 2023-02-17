@@ -6,6 +6,7 @@ const {
   likePost,
   getPost,
   gettimelinePosts,
+  getUserPosts,
 } = require("../controller/postController");
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.put("/:id", updatePost);
 router.delete("/:id", deletePost);
 router.put("/:id/like", likePost);
 router.get("/:id", getPost);
-router.get("/timeline/all", gettimelinePosts);
+router.get("/profile/:username", getUserPosts);
+router.get("/timeline/:userId", gettimelinePosts);
 module.exports = router;

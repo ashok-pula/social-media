@@ -37,11 +37,45 @@ const deleteUser = async (req, res) => {
 };
 const getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const userId = req.query.userId;
+    const username = req.query.username;
+    const user = userId
+      ? await User.findById(userId)
+      : await User.findOne({ username });
     const { password, updateAt, ...other } = user._doc;
     res.status(200).json(other);
   } catch (error) {
     return res.status(500).json(error);
+  }
+};
+// const getUser = async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.id);
+//     const { password, updateAt, ...other } = user._doc;
+//     res.status(200).json(other);
+//   } catch (error) {
+//     return res.status(500).json(error);
+//   }
+// };
+const getFriends = async (req, res) => {
+  console.log("Ashok is working");
+  try {
+    const user = await User.findById(req.params.id);
+    // console.log(user);
+    const friends = await Promise.all(
+      user.followings.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+    // console.log(friends);
+    let friendList = [];
+    friends.map((friend) => {
+      const { _id, username, profilePicture } = friend;
+      friendList.push({ _id, username, profilePicture });
+    });
+    res.status(200).json(friendList);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };
 const followUser = async (req, res) => {
@@ -86,4 +120,11 @@ const unfollowUser = async (req, res) => {
     return res.status(403).json("We cannot unfollow yourself");
   }
 };
-module.exports = { updateUser, deleteUser, getUser, followUser, unfollowUser };
+module.exports = {
+  updateUser,
+  deleteUser,
+  getUser,
+  getFriends,
+  followUser,
+  unfollowUser,
+};

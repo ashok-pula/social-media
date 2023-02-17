@@ -1,6 +1,6 @@
 .share {
   width: 100%;
-  height: 170px;
+  /* height: 170px; */
   border-radius: 10px;
   box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
   -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
@@ -62,4 +62,18 @@
   cursor: pointer;
   margin-right: 20px;
   color: white;
+}
+.sharefileConatiner {
+  padding: 0 20px 10px 20px;
+  position: relative;
+}
+.shareImg {
+  width: 100%;
+}
+.shareCancelButton {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
 }
