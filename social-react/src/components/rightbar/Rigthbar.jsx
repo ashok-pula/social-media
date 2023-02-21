@@ -20,8 +20,9 @@ import { Add, Remove } from "@mui/icons-material";
 const Rigthbar = ({ user }) => {
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
-  const [followed, setFollowed] = useState(false);
+  const [followed, setFollowed] = useState(null);
 
+  // console.log(currentUser.followings.includes(user?._id));
   const getFreinds = async () => {
     const res =
       user &&
@@ -30,9 +31,15 @@ const Rigthbar = ({ user }) => {
     setFriends(res && res.data);
   };
   useEffect(() => {
-    setFollowed(currentUser.followings.includes(user?._id));
-    console.log(followed);
+    // console.log(user && user);
+    // console.log(currentUser);
+    setFollowed(currentUser.followings?.includes(user?._id));
+    // console.log(followed);
   }, [currentUser, user]);
+  // useEffect(() => {
+  //   setFollowed(currentUser.followings?.includes(user?._id));
+  //   console.log(followed);
+  // }, [currentUser, user]);
 
   useEffect(() => {
     getFreinds();

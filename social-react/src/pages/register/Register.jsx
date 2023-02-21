@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import "./register.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
@@ -69,8 +69,11 @@ const Register = () => {
               ref={passwordAgain}
             />
             <button className="registerButton">Sign Up</button>
-
-            <button className="registerRegisterButton">Log into Account</button>
+            <Link to="/login">
+              <button className="registerRegisterButton">
+                Log into Account
+              </button>
+            </Link>
           </form>
         </div>
       </div>

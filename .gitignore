@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 social-react/node_modules
+socket/node_modules
 node-rest-api/node_modules
 dist
 node-rest-api/vars

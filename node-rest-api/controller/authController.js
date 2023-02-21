@@ -4,9 +4,12 @@ const bcrypt = require("bcrypt");
 const register = async (req, res) => {
   try {
     console.log("register");
+    console.log(req.body);
     const salt = await bcrypt.genSalt(10);
+
     const hashPassword = await bcrypt.hash(req.body.password, salt);
     const existingUser = await User.findOne({ email: req.body.email });
+    console.log(existingUser);
     if (existingUser) return res.status(500).json("user already exists");
     const newUser = await new User({
       username: req.body.username,
@@ -14,6 +17,7 @@ const register = async (req, res) => {
       password: hashPassword,
     });
     console.log(newUser);
+    console.log("object");
 
     const user = await newUser.save();
     // console.log(user);

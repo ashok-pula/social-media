@@ -4,6 +4,7 @@ import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 
+import Messenger from "./pages/messenger/Messenger";
 import {
   BrowserRouter,
   Route,
@@ -12,10 +13,10 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { useEffect } from "react";
-import axios from "axios";
+
 import { AuthContext } from "./context/AuthContext";
 const App = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
   // console.log(user);
@@ -32,6 +33,7 @@ const App = () => {
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
         />
+        <Route path="/messenger" element={user?<Messenger />:<Login/>} />
         <Route
           path="/profile/:username"
           element={user ? <Profile /> : <Login />}

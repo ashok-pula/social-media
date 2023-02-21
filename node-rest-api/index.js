@@ -10,6 +10,8 @@ const path = require("path");
 const usersRoute = require("./routes/users.js");
 const authRoute = require("./routes/auth.js");
 const postsRoute = require("./routes/posts.js");
+const conversationsRoute = require("./routes/conversation");
+const messagesRoute = require("./routes/message");
 
 dotenv.config();
 mongoose.set("strictQuery", true);
@@ -41,5 +43,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/users", usersRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postsRoute);
+app.use("/api/conversation", conversationsRoute);
+app.use("/api/message", messagesRoute);
 
 app.listen(8800, () => console.log("server is running...."));

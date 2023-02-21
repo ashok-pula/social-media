@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import "./login.css";
 import { loginCall } from "./../../apiCall";
 import { CircularProgress } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const email = useRef();
@@ -52,9 +52,11 @@ const Login = () => {
               {isFetching ? <CircularProgress color="inherit" /> : "Log In"}
             </button>
             <span className="loginForgot">Forgot Password</span>
-            <button className="loginRegisterButton">
-              Create a New Account
-            </button>
+            <Link to="/register">
+              <button className="loginRegisterButton">
+                Create a New Account
+              </button>
+            </Link>
           </form>
         </div>
       </div>

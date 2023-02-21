@@ -8,6 +8,7 @@ export const loginCall = async (usercredentials, dispatch) => {
       usercredentials
     );
     console.log(res.data);
+    localStorage.setItem("user", JSON.stringify(res.data));
 
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
   } catch (error) {
